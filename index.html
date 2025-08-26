@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vinayaka Chavithi Wishes</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: "Poppins", sans-serif;
+      overflow: hidden; /* prevent overscroll */
+    }
+
+    /* Background container to fix mobile issues */
+    .bg-container {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: url('gaanesha.jpg') no-repeat center center;
+      background-size: cover;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Overlay */
+    .overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.45);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    body {
+      position: relative;
+      z-index: 2;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: auto;
+      background: none; /* Remove bg fallback */
+      padding: 0 10px;
+      box-sizing: border-box;
+    }
+    
+    .card {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(12px);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+      color: white;
+      animation: fadeIn 2s ease-in-out;
+      max-width: 90%;
+      width: 320px;
+      box-sizing: border-box;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation-name: fadeIn, pulseGlow;
+      animation-duration: 2s, 4s;
+      animation-iteration-count: 1, infinite;
+      animation-timing-function: ease-in-out, ease-in-out;
+    }
+
+    .card:hover, .card:focus-within {
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(255, 198, 0, 0.8);
+      cursor: pointer;
+      outline: none;
+    }
+
+    .card::before,
+    .card::after {
+      content: "🍃🍃";
+      font-size: 24px;
+      position: absolute;
+      color: #ffdd57;
+      user-select: none;
+      pointer-events: none;
+      text-shadow:
+        1px 1px 2px #663300,
+        -1px -1px 2px #663300;
+    }
+    .card::before {
+      top: 12px;
+      left: 12px;
+    }
+    .card::after {
+      bottom: 12px;
+      right: 12px;
+      transform: rotate(180deg);
+    }
+
+    h1 {
+      font-size: 2.2em;
+      margin-bottom: 20px;
+      background: linear-gradient(to right, #ffeb3b, #ff5722, #ffc107);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shine 2s infinite linear;
+      text-shadow: 1px 1px 3px #330000cc;
+    }
+
+    .card img {
+      width: 180px;
+      border-radius: 15px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+      animation: fadeIn 3s ease-in-out;
+      display: block;
+      margin: 0 auto;
+    }
+
+    p {
+      font-size: 1.2em;
+      margin-top: 18px;
+      line-height: 1.5em;
+      text-shadow: 1px 1px 2px #220000aa;
+    }
+
+    .flower, .modak {
+      position: absolute;
+      font-size: 28px;
+      animation: fall linear infinite;
+      opacity: 0.85;
+      pointer-events: none;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    @keyframes shine {
+      from {
+        background-position: 0;
+      }
+      to {
+        background-position: 200px;
+      }
+    }
+    @keyframes fall {
+      from {
+        transform: translateY(-100px) rotate(0);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+    @keyframes pulseGlow {
+      0%, 100% {
+        box-shadow: 0 0 12px 3px rgba(255, 198, 0, 0.6);
+      }
+      50% {
+        box-shadow: 0 0 25px 6px rgba(255, 198, 0, 1);
+      }
+    }
+
+    /* Responsive font sizing */
+    @media (max-width: 400px) {
+      h1 {
+        font-size: 1.8em;
+      }
+      p {
+        font-size: 1em;
+      }
+      .card {
+        width: 90%;
+        padding: 20px;
+      }
+      .card img {
+        width: 140px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-container" aria-hidden="true"></div>
+  <div class="overlay" aria-hidden="true"></div>
+
+  <div class="card" tabindex="0" aria-label="Vinayaka Chavithi Blessing Card">
+    <h1>🌸 Happy Vinayaka Chavithi 🌸</h1>
+    <img src="gaanesha.jpg" alt="Lord Ganesha" />
+    <p>🙏 May Lord Ganesha remove all obstacles and bless you with health, wisdom, and prosperity! 🪔</p>
+  </div>
+
+  <script>
+    const items = ["🌸", "🥮", "🪔", "🌼", "🍬", "🌺"];
+    function createFloating() {
+      const el = document.createElement("div");
+      el.className = Math.random() > 0.5 ? "flower" : "modak";
+      el.innerHTML = items[Math.floor(Math.random() * items.length)];
+      el.style.left = Math.random() * 100 + "vw";
+      el.style.animationDuration = (3 + Math.random() * 4) + "s";
+      el.style.fontSize = (24 + Math.random() * 12) + "px";
+      document.body.appendChild(el);
+
+      setTimeout(() => el.remove(), 7000);
+    }
+    setInterval(createFloating, 650);
+  </script>
+</body>
+</html>
+ 
